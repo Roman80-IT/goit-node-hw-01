@@ -102,7 +102,7 @@ function addContact(name, email, phone) {
 }
 ```
 
-## Крок 3
+## Крок 3 - Checked functions for working
 
 Імпорт модуля `contacts.js` в файлі `index.js` та перевірено працездатність функцій для роботи з контактами.
 
@@ -116,4 +116,101 @@ $ npm i nanoid@3.3.4
 const { nanoid } = require('nanoid');
 
 
+```
+
+## Крок 4 - Консольний додаток (Console application)
+
+У файлі `index.js` має імпортуватися пакет **yargs** для зручного парсу аргументів командного рядка (потрібний, щоб у нас команда була ключем, а значення – об’єктом)
+
+Використовуємо готову функцію `invokeAction()`, яка отримує тип виконуваної дії і необхідні аргументи. Функція викликає відповідний метод з файлу `contacts.js`, передаючи йому необхідні аргументи.
+
+```
+npm install yargs
+```
+
+```js
+// index.js
+const argv = require("yargs").argv;
+
+// TODO: рефакторити
+function invokeAction({ action, id, name, email, phone }) {
+  switch (action) {
+    case "list":
+      // ...
+      break;
+
+    case "get":
+      // ... id
+      break;
+
+    case "add":
+      // ... name email phone
+      break;
+
+    case "remove":
+      // ... id
+      break;
+
+    default:
+      console.warn("\x1B[31m Unknown action type!");
+  }
+}
+
+invokeAction(argv);
+```
+
+```
+$ node index --action list
+$ node index --action="list"
+
+$ node index --action="get" --id rsKkOQUi80UsgVPCcLZZW
+$ node index --action get --id rsKkOQUi80UsgVPCcLZZW
+$ node index --action="get" --id="rsKkOQUi80UsgVPCcLZZW"
+
+$ node index --action="add" --name="Wasya Ostapenko" --email="Wasyl_na_droti@gmail.com" --phone="+38(066) 170-15-89"
+
+$ node index --action="remove" --id="rsKkOUi8sgVPCcLZZW"
+```
+
+Також можеш використати модуль **commander** для парсингу аргументів командного рядка. Це більш популярна альтернатива модуля **yargs**
+
+```js
+const { Command } = require("commander");
+const program = new Command();
+program
+  .option("-a, --action <type>", "choose action")
+  .option("-i, --id <type>", "user id")
+  .option("-n, --name <type>", "user name")
+  .option("-e, --email <type>", "user email")
+  .option("-p, --phone <type>", "user phone");
+
+program.parse(process.argv);
+
+const argv = program.opts();
+
+// TODO: рефакторити
+function invokeAction({ action, id, name, email, phone }) {
+  switch (action) {
+    case "list":
+      // ...
+      break;
+
+    case "get":
+      // ... id
+      break;
+
+    case "add":
+      // ... name email phone
+      break;
+
+    case "remove":
+      // ... id
+      break;
+
+    default:
+      console.warn("\x1B[31m Unknown action type!");
+  }
+}
+
+invokeAction(argv);
 ```
