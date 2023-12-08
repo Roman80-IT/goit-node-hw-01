@@ -8,10 +8,10 @@ const contactsPath = path.join(__dirname, "db/contacts.json");
 // console.log(contactsPath);
 
 // TODO: задокументувати кожну функцію
-function listContacts() {
-// ...твій код. Повертає масив контактів.
+async function listContacts() {
+  // ...твій код. Повертає масив контактів.
   const data = await fs.readFile(contactsPath);
-    return JSON.parse(data);
+  return JSON.parse(data);
 }
 
 //! 2-й варіант запису:
