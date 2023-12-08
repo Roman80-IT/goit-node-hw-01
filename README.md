@@ -2,6 +2,14 @@
 
 ## Cкріншоти виконання команд
 
+LIST - [screenshot](./slides/5-LIST.jpg)
+
+GET - [screenshot](./slides/5-GET.jpg)
+
+ADD - [screenshot](./slides/5-ADD.jpg)
+
+REMOVE - [screenshot](./slides/5-REMOVE.jpg)
+
 ## Крок 1 - Встановлення пакета **nodemon**
 
 1. Ініціалізовано проєкт (створення `package.json`)

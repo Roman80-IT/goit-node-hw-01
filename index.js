@@ -1,4 +1,4 @@
-const argv = require("yargs").argv; //* variant 1
+const argv = require("yargs").argv;
 
 const people = require("./contacts");
 
