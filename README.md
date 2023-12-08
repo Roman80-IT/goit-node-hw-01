@@ -1,4 +1,4 @@
-# goit-node-hw-01
+# Модуль 1. Основи Node.js
 
 ## Cкріншоти виконання команд
 
@@ -9,6 +9,8 @@ GET - [screenshot](./slides/5-GET.jpg)
 ADD - [screenshot](./slides/5-ADD.jpg)
 
 REMOVE - [screenshot](./slides/5-REMOVE.jpg)
+
+---
 
 ## Крок 1 - Встановлення пакета **nodemon**
 
