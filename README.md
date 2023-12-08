@@ -3,7 +3,7 @@
 ## Крок 1
 
 - Ініціалізовано проєкт (створення `package.json`)
-  за допомогою команди [`npm init`](./slides/1-1 init package.json.jpg)
+  за допомогою команди [`npm init`](./slides/1-1-init-package.json.jpg)
 - Створено файл `index.js` в корені проєкту
 - Встановвлено пакет **nodemon** як залежність розробки (`devDependencies`)
 - В файлі `package.json` додано "скрипти" для запуску `index.js`
