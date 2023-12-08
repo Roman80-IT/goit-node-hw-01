@@ -57,8 +57,22 @@
 const fs = require("fs/promises");
 ```
 
-5. Створи змінну `contactsPath` і запиши в неї шлях до файлу `contacts.json`. Для складання шляху використовуй методи модуля **path**.
-   Додай функції для роботи з колекцією контактів.
+5. Створено змінну `contactsPath`, і в ній шлях до файлу `contacts.json`.
+
+```js
+const contactsPath = require("./db/contacts.json");
+```
+
+Шлях має бути не відносний, а абсолютний, тому для складання шляху використамо методи модуля **path**:
+
+```js
+const path = require("path"); // імпортуємо `path`
+// const { dirname } = require("path");     // або так
+
+const contactsPath = path.join(__dirname, "db/contacts.json");
+```
+
+Додай функції для роботи з колекцією контактів.
 
 У функціях використовуй модуль **fs** та його методи `readFile()` і `writeFile()`.
 
