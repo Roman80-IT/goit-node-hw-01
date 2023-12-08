@@ -5,11 +5,10 @@ const path = require("path");
 // const contactsPath = require("./db/contacts.json");
 const contactsPath = path.join(__dirname, "db/contacts.json");
 // const contactsPath = path.resolve(__dirname, "db/contacts.json");
-// console.log(contactsPath);
 
 // TODO: задокументувати кожну функцію
 async function listContacts() {
-  // ...твій код. Повертає масив контактів.
+  // Повертає масив контактів.
   const data = await fs.readFile(contactsPath);
   return JSON.parse(data);
 }
@@ -20,20 +19,43 @@ async function listContacts() {
 //   return JSON.parse(data);
 // };
 
-function getContactById(contactId) {
-  // ...твій код. Повертає об'єкт контакту з таким id. Повертає null, якщо контакт з таким id не знайдений.
+async function getContactById(contactId) {
+  // Повертає об'єкт контакту з таким id. Повертає null, якщо контакт з таким id не знайдений.
+  const people = await listContacts();
+  const result = people.find((item) => item.id === id);
+  return result || null;
 }
 
-function removeContact(contactId) {
-  // ...твій код. Повертає об'єкт видаленого контакту. Повертає null, якщо контакт з таким id не знайдений.
+async function removeContact(contactId) {
+  // Повертає об'єкт видаленого контакту. Повертає null, якщо контакт з таким id не знайдений.
+  const people = await getAll();
+  const index = people.findIndex((item) => item.id === id);
+  if (index === -1) {
+    return null;
+  }
+  const [result] = people.splice(index, 1);
+  await fs.writeFile(contactsPath, JSON.stringify(people, null, 3));
+  return result;
 }
 
-function addContact(name, email, phone) {
-  // ...твій код. Повертає об'єкт доданого контакту.
+async function addContact(name, email, phone) {
+  // Повертає об'єкт доданого контакту.
+  const people = await getAll();
+  const newContact = {
+    id: nanoid(),
+    ...data,
+  };
+  people.push(newContact);
+  await fs.writeFile(contactsPath, JSON.stringify(people, null, 3));
+  return newContact;
 }
 
 const contacts = {
   contactsPath,
+  listContacts,
+  getContactById,
+  removeContact,
+  addContact,
 };
 
 module.exports = contacts;
