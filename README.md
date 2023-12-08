@@ -101,3 +101,19 @@ function addContact(name, email, phone) {
   // ...твій код. Повертає об'єкт доданого контакту.
 }
 ```
+
+## Крок 3
+
+Імпорт модуля `contacts.js` в файлі `index.js` та перевірено працездатність функцій для роботи з контактами.
+
+Встановлення бібліотеки **nanoid**:
+
+```js
+npm install nanoid //нова версія не працює з CommonJS
+
+$ npm i nanoid@3.3.4
+
+const { nanoid } = require('nanoid');
+
+
+```

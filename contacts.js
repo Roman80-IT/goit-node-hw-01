@@ -1,6 +1,7 @@
 const fs = require("fs/promises");
 // const { dirname } = require("path");
 const path = require("path");
+const { nanoid } = require("nanoid");
 
 // const contactsPath = require("./db/contacts.json");
 const contactsPath = path.join(__dirname, "db/contacts.json");
@@ -19,16 +20,16 @@ async function listContacts() {
 //   return JSON.parse(data);
 // };
 
-async function getContactById(contactId) {
+async function getContactById(id) {
   // Повертає об'єкт контакту з таким id. Повертає null, якщо контакт з таким id не знайдений.
   const people = await listContacts();
   const result = people.find((item) => item.id === id);
   return result || null;
 }
 
-async function removeContact(contactId) {
+async function removeContact(id) {
   // Повертає об'єкт видаленого контакту. Повертає null, якщо контакт з таким id не знайдений.
-  const people = await getAll();
+  const people = await listContacts();
   const index = people.findIndex((item) => item.id === id);
   if (index === -1) {
     return null;
@@ -38,9 +39,9 @@ async function removeContact(contactId) {
   return result;
 }
 
-async function addContact(name, email, phone) {
+async function addContact(data) {
   // Повертає об'єкт доданого контакту.
-  const people = await getAll();
+  const people = await listContacts();
   const newContact = {
     id: nanoid(),
     ...data,
